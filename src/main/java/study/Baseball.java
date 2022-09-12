@@ -1,12 +1,51 @@
 package study;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Baseball {
 
     public static void main(String[] args) {
+
+        Baseball baseball = new Baseball();
+        InputView inputView = new InputView();
+        ResultView resultView = new ResultView();
+        String[] answers = null;
+        boolean isReset = true;
+        boolean isRunGame = true;
+
+        while (isRunGame){
+
+            if (isReset) {
+                boolean isValidAnswers = false;
+                while (!isValidAnswers){
+                    answers = baseball.createAnswer();
+                    isValidAnswers = baseball.validNumbers(answers);
+                }
+                String answersToString = Arrays.toString(answers);
+                System.out.println("정답 : " + answersToString);
+                isReset = false;
+            }
+
+            boolean isAnswer;
+            String reGameResult;
+            boolean isReGame = true;
+            String inputNumber = inputView.inputMessage();
+            Integer[] predictionResult = baseball.validAnswer(answers, inputNumber);
+            isAnswer = resultView.predictionResultMessage(predictionResult);
+
+            if (isAnswer) {
+                isReset = true;
+                reGameResult = inputView.reGameMessage();
+                isReGame = resultView.reGameResultMessage(reGameResult);
+            }
+            if (!isReGame) {
+                isRunGame = false;
+            }
+            
+        }
 
     }
 
