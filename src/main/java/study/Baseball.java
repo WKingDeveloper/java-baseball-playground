@@ -10,14 +10,14 @@ public class Baseball {
 
     }
 
-    public Integer[] createAnswer() {
-        Integer[] answers = new Integer[3];
-        List<Integer> candidateAnswers = createCandidateAnswers();
+    public String[] createAnswer() {
+        String[] answers = new String[3];
+        List<String> candidateAnswers = createCandidateAnswers();
         answers = selectAnswers(answers, candidateAnswers);
         return answers;
     }
 
-    public boolean validNumbers(Integer[] result) {
+    public boolean validNumbers(String[] result) {
         boolean isValid = true;
         if(result.length != 3){
             isValid = false;
@@ -28,16 +28,16 @@ public class Baseball {
         return isValid;
     }
 
-    private List<Integer> createCandidateAnswers() {
-        List<Integer> candidateAnswers = new ArrayList();
+    private List<String> createCandidateAnswers() {
+        List<String> candidateAnswers = new ArrayList();
 
         for (int i = 1; i < 10; i++) {
-            candidateAnswers.add(i);
+            candidateAnswers.add(String.valueOf(i));
         }
         return candidateAnswers;
     }
 
-    private Integer[] selectAnswers(Integer[] answers, List<Integer> candidateAnswers) {
+    private String[] selectAnswers(String[] answers, List<String> candidateAnswers) {
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
             int num = random.nextInt(9-i);
@@ -45,6 +45,22 @@ public class Baseball {
             candidateAnswers.remove(num);
         }
         return answers;
+    }
+
+    public Integer[] validAnswer(String[] answers, String question) {
+        String answer = answers[0] + answers[1] + answers[2];
+        Integer[] result = {0,0};
+        for (int i = 0; i < 3; i++) {
+            String q = String.valueOf(question.charAt(i));
+            if (answers[i].equals(q)) {
+                result[1] += 1;
+                continue;
+            }
+            if (answer.contains(q)) {
+                result[0] += 1;
+            }
+        }
+        return result;
     }
 
 }
