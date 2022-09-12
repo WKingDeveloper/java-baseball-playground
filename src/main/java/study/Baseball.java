@@ -15,7 +15,7 @@ public class Baseball {
         String[] answers = null;
         boolean isReset = true;
         boolean isRunGame = true;
-
+        boolean isReGame = true;
         while (isRunGame){
 
             if (isReset) {
@@ -31,8 +31,15 @@ public class Baseball {
 
             boolean isAnswer;
             String reGameResult;
-            boolean isReGame = true;
+            boolean isValidInputNumbers = false;
             String inputNumber = inputView.inputMessage();
+            isValidInputNumbers = baseball.validInputNumbers(inputNumber);
+
+            if (!isValidInputNumbers) {
+                inputView.notValidInputNumbersMessage();
+                continue;
+            }
+
             Integer[] predictionResult = baseball.validAnswer(answers, inputNumber);
             isAnswer = resultView.predictionResultMessage(predictionResult);
 
@@ -60,8 +67,23 @@ public class Baseball {
         boolean isValid = true;
         if(result.length != 3){
             isValid = false;
+            return isValid;
         }
         if(result[0]==result[1] ||result[0]==result[2] || result[2]==result[1]){
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    public boolean validInputNumbers(String result) {
+        boolean isValid = true;
+        if(result.length() != 3){
+            isValid = false;
+            return isValid;
+        }
+        if(result.charAt(0) == result.charAt(1) ||
+                result.charAt(0) == result.charAt(2) ||
+                result.charAt(1) == result.charAt(2)) {
             isValid = false;
         }
         return isValid;

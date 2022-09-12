@@ -18,4 +18,8 @@ public class InputView {
         return value;
     }
 
+    void notValidInputNumbersMessage() {
+        System.out.println("잘못된 숫자를 입력하셨습니다. 다시 입력해주세요.");
+    }
+
 }
