@@ -18,6 +18,7 @@ public class Baseball {
             if (isReset) {
                 boolean isValidAnswers = false;
                 while (!isValidAnswers){
+                    answers.clear();
                     answers.createAnswer();
                     isValidAnswers = validationBall.validNumbers(answers.getNumbers());
                 }

@@ -20,6 +20,10 @@ public class Ball {
         return numbers;
     }
 
+    public void clear() {
+        this.numbers = "";
+    }
+
     public void createAnswer() {
         List<String> candidateAnswers = createCandidateAnswers();
         this.numbers = selectAnswers(numbers, candidateAnswers);
