@@ -1,7 +1,5 @@
 package study;
 
-import java.util.Arrays;
-
 public class Baseball {
 
     public static void main(String[] args) {
@@ -23,8 +21,7 @@ public class Baseball {
                     answers = ball.createAnswer();
                     isValidAnswers = ball.validNumbers(answers);
                 }
-                String answersToString = Arrays.toString(answers);
-                System.out.println("정답 : " + answersToString);
+                inputView.showAnswer(answers);
                 isReset = false;
             }
 

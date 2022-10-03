@@ -1,10 +1,16 @@
 package study;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputView {
 
     Scanner scanner = new Scanner(System.in);
+
+    void showAnswer(String[] answer) {
+        String answersToString = Arrays.toString(answer);
+        System.out.println("정답 : " + answersToString);
+    }
 
     String inputMessage() {
         System.out.println("숫자를 입력해 주세요.");
