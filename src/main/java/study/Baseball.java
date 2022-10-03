@@ -39,7 +39,7 @@ public class Baseball {
                 continue;
             }
 
-            Integer[] predictionResult = ball.validAnswer(answers, inputNumber);
+            PlayResult predictionResult = ball.validAnswer(answers, inputNumber);
             isAnswer = resultView.predictionResultMessage(predictionResult);
 
             if (isAnswer) {
@@ -52,10 +52,5 @@ public class Baseball {
             }
             
         }
-
     }
-
-
-
-
 }

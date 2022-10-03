@@ -38,11 +38,14 @@ class BaseballTest {
         String q1 = "345";
         String q2 = "239";
         String q3 = "146";
-        Integer[] resut1 = ball.validAnswer(answer,q1);
-        Integer[] resut2 = ball.validAnswer(answer,q2);
-        Integer[] resut3 = ball.validAnswer(answer,q3);
-        assertThat(resut1).isEqualTo(new Integer[]{1,0});
-        assertThat(resut2).isEqualTo(new Integer[]{0,2});
-        assertThat(resut3).isEqualTo(new Integer[]{0,0});
+        String q4 = "259";
+        PlayResult resut1 = ball.validAnswer(answer,q1);
+        PlayResult resut2 = ball.validAnswer(answer,q2);
+        PlayResult resut3 = ball.validAnswer(answer,q3);
+        PlayResult resut4 = ball.validAnswer(answer,q4);
+        assertThat(resut1.getResult()).isEqualTo(new Integer[]{1,0}); // 1볼 0스트라이크
+        assertThat(resut2.getResult()).isEqualTo(new Integer[]{0,2}); // 0볼 2스트라이크
+        assertThat(resut3.isFourBall()).isEqualTo(true);
+        assertThat(resut4.isThreeStrike()).isEqualTo(true);
     }
 }

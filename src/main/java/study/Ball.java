@@ -59,19 +59,19 @@ public class Ball {
         return isValid;
     }
 
-    public Integer[] validAnswer(String[] answers, String question) {
+    public PlayResult validAnswer(String[] answers, String question) {
+        PlayResult playResult = new PlayResult();
         String answer = answers[0] + answers[1] + answers[2];
-        Integer[] result = {0,0};
         for (int i = 0; i < 3; i++) {
             String q = String.valueOf(question.charAt(i));
             if (answers[i].equals(q)) {
-                result[1] += 1;
+                playResult.addStrike();
                 continue;
             }
             if (answer.contains(q)) {
-                result[0] += 1;
+                playResult.addBall();
             }
         }
-        return result;
+        return playResult;
     }
 }
