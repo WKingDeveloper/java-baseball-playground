@@ -4,11 +4,11 @@ public class Baseball {
 
     public static void main(String[] args) {
 
-        Ball ball = new Ball();
+
         InputView inputView = new InputView();
         ResultView resultView = new ResultView();
-
-        String[] answers = null;
+        Ball answers = new Ball();
+        ValidationBall validationBall = new ValidationBall();
         boolean isRunGame = true;
         boolean isReset = true;
         boolean isReGame = true;
@@ -18,10 +18,10 @@ public class Baseball {
             if (isReset) {
                 boolean isValidAnswers = false;
                 while (!isValidAnswers){
-                    answers = ball.createAnswer();
-                    isValidAnswers = ball.validNumbers(answers);
+                    answers.createAnswer();
+                    isValidAnswers = validationBall.validNumbers(answers.getNumbers());
                 }
-                inputView.showAnswer(answers);
+                inputView.showAnswer(answers.getNumbers());
                 isReset = false;
             }
 
@@ -29,14 +29,15 @@ public class Baseball {
             String reGameResult;
             boolean isValidInputNumbers = false;
             String inputNumber = inputView.inputMessage();
-            isValidInputNumbers = ball.validInputNumbers(inputNumber);
+            Ball userBall = new Ball(inputNumber);
+            isValidInputNumbers = validationBall.validNumbers(inputNumber);
 
             if (!isValidInputNumbers) {
                 inputView.notValidInputNumbersMessage();
                 continue;
             }
 
-            PlayResult predictionResult = ball.validAnswer(answers, inputNumber);
+            PlayResult predictionResult = validationBall.validAnswer(answers, userBall);
             isAnswer = resultView.predictionResultMessage(predictionResult);
 
             if (isAnswer) {
